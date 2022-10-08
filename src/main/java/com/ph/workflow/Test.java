@@ -10,7 +10,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         //读取文件内容到字符串
-        ProcessEngine processEngine = new ProcessEngine("workflow/workflow.xml");
+        ProcessEngine processEngine = new ProcessEngine("src/main/resources/workflow/workflow.xml");
 
         //可以采用自动注册
         processEngine.registNodeProcessor(new OperatorOfApproval());

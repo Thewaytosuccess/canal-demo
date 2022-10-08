@@ -1,10 +1,12 @@
 package com.ph.workflow;
 
+import lombok.Data;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class PeNode {
     //id
     public String id;
@@ -35,5 +37,4 @@ public class PeNode {
     public PeEdge outWithOutID(String nextPeEdgeID) {
         return out.stream().filter(e -> !e.id.equals(nextPeEdgeID)).findFirst().orElse(null);
     }
-
 }

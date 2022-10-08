@@ -1,5 +1,8 @@
 package com.ph.workflow;
 
+import lombok.Data;
+
+@Data
 public class PeEdge {
     public String id;
 

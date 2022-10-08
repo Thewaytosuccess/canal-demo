@@ -40,7 +40,9 @@ public class XmlPeProcessBuilder {
             else
                 buildPeNode(node);
         }
-        Map.Entry<String, PeNode> startEventEntry = id2PeNode.entrySet().stream().filter(entry -> "startEvent".equals(entry.getValue().type)).findFirst().get();
+
+        Map.Entry<String, PeNode> startEventEntry = id2PeNode.entrySet().stream()
+                .filter(entry -> "startEvent".equals(entry.getValue().type)).findFirst().get();
         return new PeProcess(startEventEntry.getKey(), startEventEntry.getValue());
     }
 
@@ -57,7 +59,8 @@ public class XmlPeProcessBuilder {
         peNode.xmlNode = node;
 
         List<Node> inPeEdgeNodes = XmlUtil.childrenByName(node, "incoming");
-        inPeEdgeNodes.forEach(e -> peNode.in.add(id2PeEdge.computeIfAbsent(XmlUtil.text(e), PeEdge::new)));
+        inPeEdgeNodes.forEach(e -> peNode.in.add(id2PeEdge.computeIfAbsent(
+                XmlUtil.text(e), PeEdge::new)));
 
         List<Node> outPeEdgeNodes = XmlUtil.childrenByName(node, "outgoing");
         outPeEdgeNodes.forEach(e -> peNode.out.add(id2PeEdge.computeIfAbsent(XmlUtil.text(e), PeEdge::new)));

@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
 * DOM方式解析xml
@@ -41,24 +42,23 @@ public class XmlUtil {
     }
 
     public static String text(Node node){
-        return node.getNodeValue();
+        NodeList childNodes = node.getChildNodes();
+        for (int k = 0; k < childNodes.getLength(); k++) {
+            if(Objects.nonNull(childNodes.item(k).getNodeValue())){
+                return childNodes.item(k).getNodeValue();
+            }
+        }
+        return null;
     }
 
 
     public static String attributeValue(Node node,String tag){
-        try {
-            NodeList nodes = document.getElementsByTagName(node.getNodeName());
-            for (int i = 0; i < nodes.getLength(); i++) {
-                NamedNodeMap attrs = nodes.item(i).getAttributes();
-                for (int j = 0; j < attrs.getLength(); j++) {
-                    Node attr = attrs.item(j);
-                    if(attr.getNodeName().equals(tag)){
-                        return attr.getNodeValue();
-                    }
-                }
+        NamedNodeMap attrs = node.getAttributes();
+        for (int j = 0; j < attrs.getLength(); j++) {
+            Node attr = attrs.item(j);
+            if(attr.getNodeName().equals(tag)){
+                return attr.getNodeValue();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return null;
     }

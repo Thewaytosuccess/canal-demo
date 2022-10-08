@@ -9,7 +9,7 @@ import com.ph.workflow.engine.ProcessEngine;
  */
 public class OperatorOfApprovalApply implements IOperator {
 
-    public static int price = 500;
+    public static int price = 200;
 
     @Override
     public String getType() {
